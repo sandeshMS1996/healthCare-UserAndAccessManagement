@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
@@ -25,6 +24,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     private final AuthenticationManager authenticationManager;
 
     private final JPAClientDetailsService jpaClientDetailsService;
+
+    private final DataSource dataSource;
 
     @Autowired
     public AuthServerConfig(AuthenticationManager authenticationManager, JPAClientDetailsService jpaClientDetailsService, DataSource dataSource) {
@@ -39,7 +40,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         endpoints.tokenStore(tokenStore());
         endpoints.accessTokenConverter(jwtAccessTokenConverter());
     }
-    private final DataSource dataSource;
+
 
     @Bean
     public TokenStore tokenStore() {
