@@ -19,6 +19,7 @@ public class JPAClientDetailsService implements ClientDetailsService {
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
         OAuthClient oAuthClient = this.clientRepo.findOAuthClientByClientId(clientId)
                 .orElseThrow(() -> new ClientRegistrationException("No Client with name " + clientId));
+        System.out.println(oAuthClient);
         return new MyClientDetails(oAuthClient);
     }
 }

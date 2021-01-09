@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class OAuthClient implements Serializable {
 
     @Id
